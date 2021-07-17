@@ -3,11 +3,14 @@
  */
 package com.srm.bcScraper.webScraper;
 
+import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -39,7 +42,7 @@ public class PageExtractor {
 
 	private HtmlPage mainPage;
 
-	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss",Locale.getDefault());
 
 	/**
 	 * Metodo que selecciona region
@@ -178,47 +181,51 @@ public class PageExtractor {
 		DomNode firstChild = elementById.getFirstChild();
 
 		HtmlTable tablaResultados = (HtmlTable) firstChild;
+		
+//		fecha de extraccion
+		Date fcaExtract = new Date();  
 
-		// itero por los servicentros recuperados
-		for (final HtmlTableRow row : tablaResultados.getRows()) {
+		if (tablaResultados != null) {
+			// itero por los servicentros recuperados
+			for (final HtmlTableRow row : tablaResultados.getRows()) {
 
-			ServiCentro serviCentro = new ServiCentro();
+				ServiCentro serviCentro = new ServiCentro();
 
-			serviCentro.setRegion(regionOption.getText());
-			serviCentro.setTipoGasolina(combustibleOption.getText());
-			
-			int i = 0;
-			
+				serviCentro.setRegion(regionOption.getText());
+				serviCentro.setTipoGasolina(combustibleOption.getText());
+
+				int i = 0;
+
 				for (final HtmlTableCell cell : row.getCells()) {
-					
-					if (i==0) {
-						
-						log.info("Columna Direccion y empresa : "+i +" - "+cell.asText());
-						
+
+					if (i == 0) {
+
+						log.info("Columna Direccion y empresa : " + i + " - " + cell.asText());
+
 						if (!cell.asText().trim().equalsIgnoreCase("Servicentro")) {
 							serviCentro = extraeEmpresaDireccion(cell.asText(), serviCentro);
 						}
-						
-					}else if (i==1) {
-						
-						log.info("Columna si es Auto Servicio: "+i +" - "+cell.asText());
+
+					} else if (i == 1) {
+
+						log.info("Columna si es Auto Servicio: " + i + " - " + cell.asText());
 						if (!cell.asText().trim().equalsIgnoreCase("Servicentro")) {
 							serviCentro.setAutoservicio(!cell.asText().trim().equals("-"));
 						}
-						
-					}else if (i==2) {
-						
-						log.info("Columna Precio : "+i +" - "+cell.asText());
+
+					} else if (i == 2) {
+
+						log.info("Columna Precio : " + i + " - " + cell.asText());
 						if (!cell.asText().trim().equalsIgnoreCase("Servicentro")) {
 							if (!cell.asText().trim().equalsIgnoreCase("Autoservicio")) {
 								if (!cell.asText().trim().equalsIgnoreCase("Precio")) {
-									serviCentro.setPrecio(new Double(cell.asText().trim().split(",")[0]));
+									serviCentro.setPrecio(new BigDecimal(cell.asText().trim().split(",")[0]));
 								}
 							}
 						}
-					}else if (i==3) {
-						
-						log.info("Columna Ultima Actualizacion: "+i +" - "+cell.asText());
+					} else if (i == 3) {
+
+						log.info("Columna Ultima Actualizacion: " + i + " - " + cell.asText());
 						if (!cell.asText().trim().equalsIgnoreCase("Servicentro")) {
 							if (!cell.asText().trim().equalsIgnoreCase("Autoservicio")) {
 								if (!cell.asText().trim().equalsIgnoreCase("Precio")) {
@@ -228,17 +235,19 @@ public class PageExtractor {
 								}
 							}
 						}
-						
 					}
 
 					i++;
 				}
-				
+
 				if (serviCentro.getPrecio() != null) {
+					
+					serviCentro.setFcaExtraccion(fcaExtract);
 					servicentros.add(serviCentro);
 				}
-				
+
 			}
+		}
 
 	}
 

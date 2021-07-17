@@ -1,8 +1,6 @@
 package com.srm.bcScraper.webScraper;
 
 import java.io.File;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -109,7 +107,6 @@ public class ExtractJson {
 			webClient.close();
 
 //		escrivo resultados en CSV
-			Path path = Paths.get("csv/writtenBean.csv");
 			File directorio = new File("csv/");
 
 			if (!directorio.exists()) {
@@ -120,7 +117,7 @@ public class ExtractJson {
 				}
 			}
 
-			csvWriter.writeCsvFromBean(path, servicentrosAll);
+			csvWriter.writeCsvFromBean("csv/writtenBean.csv", servicentrosAll);
 
 		} catch (Exception e) {
 			log.error(e);

@@ -3,6 +3,7 @@
  */
 package com.srm.bcScraper.bean;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 /**
@@ -15,9 +16,10 @@ public class ServiCentro {
 	private String region;
 	private String direccion;
 	private Boolean autoservicio;
-	private Double precio;
+	private BigDecimal precio;
 	private String tipoGasolina;
 	private Date ultimaModificacion;
+	private Date fcaExtraccion;
 	/**
 	 * @return the empresa
 	 */
@@ -69,13 +71,13 @@ public class ServiCentro {
 	/**
 	 * @return the precio
 	 */
-	public Double getPrecio() {
+	public BigDecimal getPrecio() {
 		return precio;
 	}
 	/**
 	 * @param precio the precio to set
 	 */
-	public void setPrecio(Double precio) {
+	public void setPrecio(BigDecimal precio) {
 		this.precio = precio;
 	}
 	/**
@@ -102,11 +104,25 @@ public class ServiCentro {
 	public void setUltimaModificacion(Date ultimaModificacion) {
 		this.ultimaModificacion = ultimaModificacion;
 	}
+
+	/**
+	 * @return the fcaExtraccion
+	 */
+	public Date getFcaExtraccion() {
+		return fcaExtraccion;
+	}
+	
+	/**
+	 * @param fcaExtraccion the fcaExtraccion to set
+	 */
+	public void setFcaExtraccion(Date fcaExtraccion) {
+		this.fcaExtraccion = fcaExtraccion;
+	}
 	@Override
 	public String toString() {
-		return "serviCentro [empresa=" + empresa + ", region=" + region + ", direccion="
-				+ direccion + ", autoservicio=" + autoservicio + ", precio=" + precio + ", tipoGasolina=" + tipoGasolina
-				+ ", ultimaModificacion=" + ultimaModificacion + "]";
+		return "ServiCentro [empresa=" + empresa + ", region=" + region + ", direccion=" + direccion + ", autoservicio="
+				+ autoservicio + ", precio=" + precio + ", tipoGasolina=" + tipoGasolina + ", ultimaModificacion="
+				+ ultimaModificacion + ", Fecha Extraccion=" + fcaExtraccion + "]";
 	}
 	
 	
