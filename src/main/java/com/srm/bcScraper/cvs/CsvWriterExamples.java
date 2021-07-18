@@ -53,14 +53,15 @@ public class CsvWriterExamples {
 
 	private static CellProcessor[] getProcessors() {
 
-		final CellProcessor[] processors = new CellProcessor[] { new NotNull(), // empresa
+		final CellProcessor[] processors = new CellProcessor[] { 
+				new NotNull(), // empresa
 				new NotNull(), // region
 				new NotNull(), // direccion
 				new NotNull(new FmtBool("True", "False")), // autoservicio
 				new NotNull(), // precio
 				new NotNull(), // tipoGasolina
-				new Optional(new FmtDate("yyyy-MM-dd HH:mm:ss")), // ultimaModificacion
-				new NotNull(new FmtDate("yyyy-MM-dd HH:mm:ss")), // fcaExtraccion
+				new NotNull(new FmtDate("yyyy-MM-dd HH:mm:ss")), // ultimaModificacion
+				new NotNull(new FmtDate("yyyy-MM-dd HH:mm:ss")) // fcaExtraccion
 
 		};
 
