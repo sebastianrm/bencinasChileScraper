@@ -1,7 +1,9 @@
 package com.srm.bcScraper.webScraper;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
@@ -116,8 +118,14 @@ public class ExtractJson {
 					log.info("Error al crear directorio");
 				}
 			}
+			
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+			
+			Date date = new Date();
+			
+			String format = sdf.format(date);
 
-			csvWriter.writeCsvFromBean("csv/writtenBean.csv", servicentrosAll);
+			csvWriter.writeCsvFromBean("csv/writtenBean_"+format+".csv", servicentrosAll);
 
 		} catch (Exception e) {
 			log.error(e);
