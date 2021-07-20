@@ -15,6 +15,11 @@ import org.supercsv.prefs.CsvPreference;
 
 import com.srm.bcScraper.bean.ServiCentro;
 
+/**
+ * 
+ * @author sebastian
+ *
+ */
 public class CsvWriterExamples {
 
 	private static final Logger log = LogManager.getLogger(CsvWriterExamples.class);

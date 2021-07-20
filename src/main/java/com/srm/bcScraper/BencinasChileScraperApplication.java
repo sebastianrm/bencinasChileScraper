@@ -10,6 +10,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import com.srm.bcScraper.webScraper.ExtractJson;
 
 @SpringBootApplication
+/**
+ * 
+ * @author sebastian
+ *
+ */
 public class BencinasChileScraperApplication {
 	
 	private static final Logger log = LogManager.getLogger(BencinasChileScraperApplication.class);

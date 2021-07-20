@@ -20,7 +20,11 @@ import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import com.gargoylesoftware.htmlunit.html.HtmlSelect;
 import com.srm.bcScraper.bean.ServiCentro;
 import com.srm.bcScraper.cvs.CsvWriterExamples;
-
+/**
+ * 
+ * @author sebastian
+ *
+ */
 public class ExtractJson {
 
 	private static final String URL_MAIN_PAGE = "http://www.bencinaenlinea.cl";
