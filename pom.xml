@@ -26,6 +26,15 @@
 		<maven.compiler.target>1.8</maven.compiler.target>
 	</properties>
 	
+	<developers>
+		<developer>
+			<name>Sebastian Retamal Morales</name>
+			<email>retamal.sebastian@gmail.com</email>
+			<url>http://www.sebastianretamal.cl</url>
+			<timezone>America/Lima</timezone>
+		</developer>
+	</developers>
+	
 	
 	<dependencies>
 		<dependency>
@@ -43,11 +52,6 @@
 			<artifactId>htmlunit</artifactId>
 		</dependency>
 		
-<!-- 		<dependency> -->
-<!-- 			<groupId>org.springframework.boot</groupId> -->
-<!-- 			<artifactId>spring-boot-starter-log4j2</artifactId> -->
-<!-- 		</dependency> -->
-
 		<dependency>
 			<groupId>net.sf.supercsv</groupId>
 			<artifactId>super-csv</artifactId>
